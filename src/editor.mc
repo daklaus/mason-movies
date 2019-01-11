@@ -8,6 +8,15 @@
   has 'parentid';
 </%class>
 
+<div class="container">
+<div class="agileits-single-top">
+    <ol class="breadcrumb">
+      <li><a href="index">Home</a></li>
+      <li class="active">Editor</li>
+    </ol>
+</div>
+<div class="single-page-agile-info">
+<div class="show-top-grids-w3lagile">
 <h2>
 % if (defined($.docid) && ($.insert==0)) {
 Film <% $.docid %> editieren
@@ -78,6 +87,9 @@ method="post" enctype="application/x-www-form-urlencoded">
 </TABLE>
 
 </form>
+</div>
+</div>
+</div>
 
 <%init>
 use Data::Dumper;
