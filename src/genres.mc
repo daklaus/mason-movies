@@ -1,3 +1,7 @@
+<%class>
+    has 'id' => (default => 1);
+</%class>
+
 <!-- /w3l-medile-movies-grids -->
 	<div class="general-agileits-w3l">
 		<div class="w3l-medile-movies-grids">
@@ -8,7 +12,7 @@
 					     <!--/browse-agile-w3ls -->
 						<div class="browse-agile-w3ls general-w3ls">
 								<div class="tittle-head">
-									<h4 class="latest-text">Family Movies </h4>
+									<h4 class="latest-text"><% $name %> Movies </h4>
 									<div class="container">
 										<div class="agileits-single-top">
 											<ol class="breadcrumb">
@@ -20,17 +24,18 @@
 								</div>
 								     <div class="container">
 							<div class="browse-inner">
+% foreach my $movie (@movies) {
 							   <div class="col-md-2 w3l-movie-gride-agile">
 										 <a href="single" class="hvr-shutter-out-horizontal"><img src="static/images/m7.jpg" title="album-name" alt=" " />
 									     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
 									</a>
 									  <div class="mid-1">
 										<div class="w3l-movie-text">
-											<h6><a href="single">Light B/t Oceans</a></h6>
+											<h6><a href="single"><% $movie->{'name'} %></a></h6>
 										</div>
 										<div class="mid-2">
 										
-											<p>2016</p>
+											<p><% $movie->{'year'} %></p>
 											<div class="block-stars">
 												<ul class="w3l-ratings">
 													     <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
@@ -38,8 +43,6 @@
 														 <li><a href="#"><i class="fa fa-star" aria-hidden="true"></i></a></li>
 														 <li><a href="#"><i class="fa fa-star-half-o" aria-hidden="true"></i></a></li>
 														 <li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>
-														  
-										
 												</ul>
 											</div>
 											<div class="clearfix"></div>
@@ -50,6 +53,9 @@
 										<p>NEW</p>
 									</div>	
 									</div>
+% }
+
+<%doc>
 								   <div class="col-md-2 w3l-movie-gride-agile">
 										 <a href="single" class="hvr-shutter-out-horizontal"><img src="static/images/m8.jpg" title="album-name" alt=" " />
 									     <div class="w3l-action-icon"><i class="fa fa-play-circle" aria-hidden="true"></i></div>
@@ -200,10 +206,12 @@
 										<p>NEW</p>
 									</div>	
 									</div>
+</%doc>
 
 											<div class="clearfix"> </div>
 								</div>
 								<!-- /latest-movies1 -->
+<%doc>
 							    <div class="browse-inner-come-agile-w3">
 							   <div class="col-md-2 w3l-movie-gride-agile">
 										 <a href="single" class="hvr-shutter-out-horizontal"><img src="static/images/c7.jpg" title="album-name" alt=" " />
@@ -761,6 +769,7 @@
 								<div class="clearfix"> </div>
 								</div>
 								</div>
+</%doc>
 						</div>
 				<!--//browse-agile-w3ls -->
 						<div class="blog-pagenat-wthree">
@@ -778,6 +787,7 @@
 				    <!-- //movie-browse-agile -->
 				   <!--body wrapper start-->
 				<!--body wrapper start-->
+<%doc>
 					<div class="review-slider">
 						 <h4 class="latest-text">Movie Reviews</h4>
 						       <div class="container">
@@ -1039,8 +1049,34 @@
 			</div>
 						<!--body wrapper end-->
 					</div>	
-			</div>	
+			</div>
+</%doc>
 		</div>
 	<!-- //w3l-medile-movies-grids -->
 	</div>
 	<!-- //comedy-w3l-agileits -->
+
+
+<%init>
+    my $dbh = Ws18::DBI->dbh();
+
+    my $sth = $dbh->prepare("SELECT name from wae10_genre WHERE id = ?");
+    $sth->execute($.id);
+    my $res = $sth->fetchrow_hashref();
+    my $name = $res->{name};
+
+    my $sth = $dbh->prepare("SELECT id, name, description, genre_id, type, rating, image, year from wae10_movie WHERE genre_id = ?");
+    $sth->execute($.id);
+    my @movies;
+    while (my $res = $sth->fetchrow_hashref()) {
+        push(@movies, {
+            id => $res->{id},
+            name => $res->{name},
+            description => $res->{description},
+            type => $res->{type},
+            rating => $res->{rating},
+            image => $res->{image},
+            year => $res->{year}
+        });
+    }
+</%init>
