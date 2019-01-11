@@ -1,7 +1,7 @@
 <%class>
 	has 'docid';
   has 'title';
-  has 'content' => (default => "<font face=Verdana>bitte hier den Text eingeben.\n</font>\n");
+  has 'content' => (default => "Bitte hier den Text eingeben.");
   has 'metatext';
   has 'Save';
   has 'insert' => (default => 0);
@@ -10,9 +10,9 @@
 
 <h2>
 % if (defined($.docid) && ($.insert==0)) {
-Dokument <% $.docid %> editieren
+Film <% $.docid %> editieren
 % } else {
-Neues Dokument anlegen
+Neuen Film anlegen
 % }
 </h2>
 % if (length($msg)) {
@@ -35,7 +35,7 @@ method="post" enctype="application/x-www-form-urlencoded">
 </TR>
 
 <TR>
-<TD>Parent-ID:</TD>
+<TD>Genre-ID:</TD>
 <TD>
 <%doc>
 <%  $cgi->popup_menu(-name      =>'parentid',
@@ -51,6 +51,7 @@ method="post" enctype="application/x-www-form-urlencoded">
 <TR>
 <TD ALIGN=left COLSPAN=2>
   <textarea name="content" id="content"><% $.content %></textarea>
+<%doc>
 <script>
 	// Replace the <textarea id="content"> with a CKEditor
 	// instance, using default configuration.
@@ -59,6 +60,7 @@ method="post" enctype="application/x-www-form-urlencoded">
 		height  : '400px'
 	});
 </script>
+</%doc>
 <BR>
 </TD>
 </TR>
@@ -85,38 +87,38 @@ my $dbh = Ws18::DBI->dbh();
 my $msg = "Welcome to the WCM content editor.";
 my %docTitleAndIds = ('0', 'top level document');
 
-my $sth = $dbh->prepare("SELECT docid, title from schranz_cms");
+my $sth = $dbh->prepare("SELECT id, name from wae10_genre");
 $sth->execute();
 while (my $res = $sth->fetchrow_hashref()) {
-  $docTitleAndIds{$res->{docid}} = $res->{title};
+  $docTitleAndIds{$res->{id}} = $res->{name};
 }
 
 if ($.Save) {
-# Speichern wurde gedrückt...
+# Speichern wurde gedrï¿½ckt...
   if ($.insert == 1) {
-  # Datensatz aus Formularfeldern in Datenbank einfügen
-    my $sth = $dbh->prepare("INSERT INTO schranz_cms (docid,content,metatext,title,parent,created) values (?,?,?,?,?,NOW())");
-    $sth->execute($.docid,$.content,$.metatext,$.title,$.parentid);
+  # Datensatz aus Formularfeldern in Datenbank einfï¿½gen
+    my $sth = $dbh->prepare("INSERT INTO wae10_movie (id, name, description, genre_id, type, rating, image, year) values (?,?,?,?,?,?,?,?)");
+    $sth->execute($.docid,$.title,$.content,$.parentid,"MOVIE",undef,undef,"2019");
     $msg = "Datensatz ". $.docid ." neu in DB aufgenommen.".$sth->rows();
-    $.insert = 0;
+    $.insert(0);
   } else {
-  # Datensatz in Datenbank ändern
-    my $sth = $dbh->prepare("UPDATE schranz_cms SET content = ?, title = ?, parent = ? WHERE docid = ?");
-    $sth->execute($.content,$.title,$.parentid,$.docid);
+  # Datensatz in Datenbank ï¿½ndern
+    my $sth = $dbh->prepare("UPDATE wae10_movie SET description = ?, name = ?, genre_id = ?, type = ?, rating = ?, image = ?, year = ? WHERE id = ?");
+    $sth->execute($.content,$.title,$.parentid,"MOVIE",undef,undef,"2019",$.docid);
     $msg = "Datensatz " . $.docid ." in DB ver&auml;ndert.".$sth->rows();
   }
 } elsif ($.docid) {
 # id erkannt, daten aus Datenbank lesen
-  my $sth = $dbh->prepare("SELECT docid, title, content, created, parent, metatext from schranz_cms WHERE docid = ?");
+  my $sth = $dbh->prepare("SELECT id, name, description, genre_id, type, rating, image, year from wae10_movie WHERE id = ?");
   $sth->execute($.docid);
   my $res = $sth->fetchrow_hashref();
-  $.content($res->{content} || $.content);
-  $.title($res->{title});
-  $.parentid($res->{parent});
+  $.content($res->{description} || $.content);
+  $.title($res->{name});
+  $.parentid($res->{genre_id});
   $msg = "Datensatz " . $.docid . " aus DB gelesen.".((defined($res) && scalar(keys(%$res)))?1:0);
 } else {
-# keine ID, neues Dokument erstellen
-  my $sth = $dbh->prepare("SELECT max(docid) as maxdocid FROM schranz_cms");
+# keine ID, neuen Film erstellen
+  my $sth = $dbh->prepare("SELECT max(id) as maxdocid FROM wae10_movie");
   $sth->execute();
   my $res = $sth->fetchrow_hashref();
   $.docid($res->{maxdocid}+1);
