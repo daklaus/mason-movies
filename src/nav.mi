@@ -21,74 +21,74 @@
 									<li>
 									<div class="col-sm-4">
 										<ul class="multi-column-dropdown">
-											<li><a href="genres.html">Action</a></li>
-											<li><a href="genres.html">Biography</a></li>
-											<li><a href="genres.html">Crime</a></li>
-											<li><a href="genres.html">Family</a></li>
-											<li><a href="horror.html">Horror</a></li>
-											<li><a href="genres.html">Romance</a></li>
-											<li><a href="genres.html">Sports</a></li>
-											<li><a href="genres.html">War</a></li>
+											<li><a href="genres">Action</a></li>
+											<li><a href="genres">Biography</a></li>
+											<li><a href="genres">Crime</a></li>
+											<li><a href="genres">Family</a></li>
+											<li><a href="horror">Horror</a></li>
+											<li><a href="genres">Romance</a></li>
+											<li><a href="genres">Sports</a></li>
+											<li><a href="genres">War</a></li>
 										</ul>
 									</div>
 									<div class="col-sm-4">
 										<ul class="multi-column-dropdown">
-											<li><a href="genres.html">Adventure</a></li>
-											<li><a href="comedy.html">Comedy</a></li>
-											<li><a href="genres.html">Documentary</a></li>
-											<li><a href="genres.html">Fantasy</a></li>
-											<li><a href="genres.html">Thriller</a></li>
+											<li><a href="genres">Adventure</a></li>
+											<li><a href="comedy">Comedy</a></li>
+											<li><a href="genres">Documentary</a></li>
+											<li><a href="genres">Fantasy</a></li>
+											<li><a href="genres">Thriller</a></li>
 										</ul>
 									</div>
 									<div class="col-sm-4">
 										<ul class="multi-column-dropdown">
-											<li><a href="genres.html">Animation</a></li>
-											<li><a href="genres.html">Costume</a></li>
-											<li><a href="genres.html">Drama</a></li>
-											<li><a href="genres.html">History</a></li>
-											<li><a href="genres.html">Musical</a></li>
-											<li><a href="genres.html">Psychological</a></li>
+											<li><a href="genres">Animation</a></li>
+											<li><a href="genres">Costume</a></li>
+											<li><a href="genres">Drama</a></li>
+											<li><a href="genres">History</a></li>
+											<li><a href="genres">Musical</a></li>
+											<li><a href="genres">Psychological</a></li>
 										</ul>
 									</div>
 									<div class="clearfix"></div>
 									</li>
 								</ul>
 							</li>
-							<!--<li><a href="series.html">tv - series</a></li>-->
-							<!--<li><a href="news.html">news</a></li>-->
+							<!--<li><a href="series">tv - series</a></li>-->
+							<!--<li><a href="news">news</a></li>-->
 							<!--<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Country <b class="caret"></b></a>
 								<ul class="dropdown-menu multi-column columns-3">
 									<li>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="genres.html">Asia</a></li>
-												<li><a href="genres.html">France</a></li>
-												<li><a href="genres.html">Taiwan</a></li>
-												<li><a href="genres.html">United States</a></li>
+												<li><a href="genres">Asia</a></li>
+												<li><a href="genres">France</a></li>
+												<li><a href="genres">Taiwan</a></li>
+												<li><a href="genres">United States</a></li>
 											</ul>
 										</div>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="genres.html">China</a></li>
-												<li><a href="genres.html">HongCong</a></li>
-												<li><a href="genres.html">Japan</a></li>
-												<li><a href="genres.html">Thailand</a></li>
+												<li><a href="genres">China</a></li>
+												<li><a href="genres">HongCong</a></li>
+												<li><a href="genres">Japan</a></li>
+												<li><a href="genres">Thailand</a></li>
 											</ul>
 										</div>
 										<div class="col-sm-4">
 											<ul class="multi-column-dropdown">
-												<li><a href="genres.html">Euro</a></li>
-												<li><a href="genres.html">India</a></li>
-												<li><a href="genres.html">Korea</a></li>
-												<li><a href="genres.html">United Kingdom</a></li>
+												<li><a href="genres">Euro</a></li>
+												<li><a href="genres">India</a></li>
+												<li><a href="genres">Korea</a></li>
+												<li><a href="genres">United Kingdom</a></li>
 											</ul>
 										</div>
 										<div class="clearfix"></div>
 									</li>
 								</ul>
 							</li>-->
-							<!--<li><a href="list.html">A - z list</a></li>-->
+							<!--<li><a href="list">A - z list</a></li>-->
 						</ul>
 					</nav>
 				</div>

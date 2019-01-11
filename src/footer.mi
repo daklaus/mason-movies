@@ -24,22 +24,22 @@
 			<div class="col-md-7 w3ls_footer_grid1_right">
 				<ul>
 					<li>
-						<a href="genres.html">Movies</a>
+						<a href="genres">Movies</a>
 					</li>
 					<li>
-						<a href="faq.html">FAQ</a>
+						<a href="faq">FAQ</a>
 					</li>
 					<li>
-						<a href="horror.html">Action</a>
+						<a href="horror">Action</a>
 					</li>
 					<li>
-						<a href="genres.html">Adventure</a>
+						<a href="genres">Adventure</a>
 					</li>
 					<li>
-						<a href="comedy.html">Comedy</a>
+						<a href="comedy">Comedy</a>
 					</li>
 					<li>
-						<a href="contact.html">Contact Us</a>
+						<a href="contact">Contact Us</a>
 					</li>
 				</ul>
 			</div>
