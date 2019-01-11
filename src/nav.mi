@@ -17,18 +17,34 @@
 							<li class="active"><a href="index">Home</a></li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">Genres <b class="caret"></b></a>
+								<ul class="dropdown-menu multi-column columns-1">
+									<li>
+									<div class="col-sm-12">
+% # my $modulus = int(scalar(@genres) / 3);
+% # for(my $i = 0; $i <= $#genres; $i++) {
+% foreach my $genre (@genres) {
+% # my $genre = $genres[$i];
+<li><a href="genres"><% $genre %></a></li>
+% # $i++;
+% }
+									</div>
+									<div class="clearfix"></div>
+									</li>
+								</ul>
+
+% if (0) {
 								<ul class="dropdown-menu multi-column columns-3">
 									<li>
 									<div class="col-sm-4">
 										<ul class="multi-column-dropdown">
-											<li><a href="genres">Action</a></li>
+											<!--<li><a href="genres">Action</a></li>
 											<li><a href="genres">Biography</a></li>
 											<li><a href="genres">Crime</a></li>
 											<li><a href="genres">Family</a></li>
 											<li><a href="horror">Horror</a></li>
 											<li><a href="genres">Romance</a></li>
 											<li><a href="genres">Sports</a></li>
-											<li><a href="genres">War</a></li>
+											<li><a href="genres">War</a></li>-->
 										</ul>
 									</div>
 									<div class="col-sm-4">
@@ -53,6 +69,7 @@
 									<div class="clearfix"></div>
 									</li>
 								</ul>
+% }
 							</li>
 							<!--<li><a href="series">tv - series</a></li>-->
 							<!--<li><a href="news">news</a></li>-->
@@ -96,3 +113,14 @@
 		</div>
 	</div>
 <!-- //nav -->
+
+<%init>
+    my $dbh = Ws18::DBI->dbh();
+
+    my $sth = $dbh->prepare("SELECT id, name from wae10_genre");
+    $sth->execute();
+    my @genres;
+    while (my $res = $sth->fetchrow_hashref()) {
+        push(@genres, $res->{name});
+    }
+</%init>
