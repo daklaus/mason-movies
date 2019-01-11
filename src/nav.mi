@@ -24,7 +24,7 @@
 % # for(my $i = 0; $i <= $#genres; $i++) {
 % foreach my $genre (@genres) {
 % # my $genre = $genres[$i];
-<li><a href="genres"><% $genre %></a></li>
+<li><a href="genres?id=<% $genre->{'id'} %>"><% $genre->{'name'} %></a></li>
 % # $i++;
 % }
 									</div>
@@ -121,6 +121,9 @@
     $sth->execute();
     my @genres;
     while (my $res = $sth->fetchrow_hashref()) {
-        push(@genres, $res->{name});
+        push(@genres, {
+            id => $res->{id},
+            name => $res->{name},
+        });
     }
 </%init>
